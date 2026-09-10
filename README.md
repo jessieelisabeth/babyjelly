@@ -2,8 +2,8 @@
 BabyJelly is a small key-value database built in Node.js from scratch. 
 ## Current features
 Supports:
-`set`, `get`, `delete`, `save`, `exit`.
-BabyJelly persists changes to disk between sessions using an append-only JSONL log.
+`set`, `get`, `delete`, `save`, `exit`, `compact`.
+BabyJelly uses an append-only JSONL log, replays operations on startup, and supports log compaction.
 
 ## Usage
 
@@ -14,16 +14,25 @@ Run BabyJelly with Node.js:
 ## Example
 
 ```text
+$ node babyjelly.js
+babyjellyDB loaded from babyjelly.jsonl
+
 babyjelly> set animal jellyfish
-babyjelly> save
-babyjellyDB saved to babyjelly.json
+babyjelly> set animal octopus
+babyjelly> set animal squid
+babyjelly> set color pink
+babyjelly> delete color
+babyjelly> compact
+you've compacted babyjelly data! feels good to start fresh!
 babyjelly> exit
 goodnight babyjelly!
 
 $ node babyjelly.js
-babyjellyDB loaded from babyjelly.json
+babyjellyDB loaded from babyjelly.jsonl
 babyjelly> get animal
-jellyfish
+squid
+babyjelly> get color
+undefined
 ```
 
 ## Project Goal
