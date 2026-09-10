@@ -3,7 +3,7 @@ BabyJelly is a small key-value database built in Node.js from scratch.
 ## Current features
 Supports:
 `set`, `get`, `delete`, `save`, `exit`.
-BabyJelly persists saved data to disk between sessions. 
+BabyJelly persists changes to disk between sessions using an append-only JSONL log.
 
 ## Usage
 
