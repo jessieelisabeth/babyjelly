@@ -66,6 +66,14 @@ rl.on('line', (line) => {
             rl.close();
             console.log('goodnight babyjelly!');
             break;
+        case 'compact':
+            let text = '';
+            for (const [key, value] of babyjellyDB) {
+                text += JSON.stringify(['set', key, value]) + '\n';
+            }
+            fs.writeFileSync('babyjelly.jsonl', text);
+            console.log('you\'ve compacted babyjelly data! feels good to start fresh!');
+            break;
         default:
             console.log(`what are you waffling on about?: ${command}`);
     }   
